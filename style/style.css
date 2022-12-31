@@ -96,3 +96,10 @@ p.position-absolute {
 .footer-icon {
   font-size: 2.3rem !important;
 }
+.weather-footer {
+  border-top: 1px solid #e4e4e4 !important;
+  border-bottom: 1px solid #e4e4e4 !important;
+}
+.weather-footer div:nth-child(1) {
+  border-right: 1px solid #e4e4e4 !important;
+}
