@@ -37,7 +37,7 @@ h3.color-theme {
 }
 input {
   padding: 12px 12px !important;
-  font-size: 1.1rem !important;
+  font-size: 1.2rem !important;
   font-weight: 600 !important;
   text-align: center;
 }
@@ -48,6 +48,7 @@ input:focus {
 
 input::placeholder {
   color: #b1b2b3 !important;
+  font-size: 1.2rem !important;
 }
 p.position-absolute {
   top: -15px;
@@ -94,7 +95,4 @@ p.position-absolute {
 }
 .footer-icon {
   font-size: 2.3rem !important;
-}
-.info-mode {
-  display: none;
 }
