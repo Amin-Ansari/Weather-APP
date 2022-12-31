@@ -55,7 +55,7 @@ p.position-absolute {
   background-color: #fff;
   transform: translateX(-50%);
   color: #b1b2b3 !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 .location-btn {
   font-size: 1.3rem !important;
@@ -63,5 +63,35 @@ p.position-absolute {
   background-color: #4cb6f2 !important;
 }
 .back-btn {
-  font-size: 1rem;
+  font-size: 1.5rem !important;
+}
+.weather-image {
+  max-width: 45% !important;
+  height: auto !important;
+}
+.tempture {
+  font-weight: 700 !important;
+  font-size: 5rem !important;
+}
+.extra-weather-info {
+  font-size: 1.4rem !important;
+}
+.fl-degree::after {
+  content: "feels like";
+  display: block;
+  font-weight: 400 !important;
+}
+.hum-precent::after {
+  content: "Humbidity";
+  display: block;
+  font-weight: 400 !important;
+}
+.fl-degree,
+.hum-precent {
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  line-height: 20px;
+}
+.footer-icon {
+  font-size: 2.3rem !important;
 }

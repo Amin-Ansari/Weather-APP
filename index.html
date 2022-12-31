@@ -20,11 +20,13 @@
           <h3
             class="color-theme m-0 p-3 border border-top-0 border-start-0 border-end-0"
           >
-            <i class="fa-sharp fa-solid fa-arrow-left"></i>
+            <i
+              class="fa-sharp fa-solid fa-arrow-left back-btn d-inline-block me-2"
+            ></i>
             Weather app
           </h3>
         </div>
-        <div class="card-body p-3">
+        <div class="card-body p-0">
           <form action="javaScript:void(0)" method="post" class="px-3 d-none">
             <input
               type="text"
@@ -38,6 +40,47 @@
               Get Device Location
             </button>
           </form>
+          <div class="weather-content d-flex flex-column">
+            <div class="weather-title d-flex flex-column p-4">
+              <img
+                src="./images/weather icons/clear.svg"
+                alt="Weather image"
+                class="d-block mx-auto weather-image"
+              />
+              <h1 class="tempture my-3 d-flex justify-content-center">
+                <span class="dgree p-0">23</span>
+                <span class="temp-sign p-0">℃</span>
+              </h1>
+              <h4 class="weather-kind text-center my-1 extra-weather-info">
+                Broken Clouds
+              </h4>
+              <h5 class="city text-center my-1 extra-weather-info">
+                <i class="fa-solid fa-location-dot"></i> Shiraz, Iran
+              </h5>
+            </div>
+            <div class="weather-footer d-flex">
+              <div
+                class="border w-50 text-center d-flex justify-content-center py-2"
+              >
+                <i
+                  class="fa-solid fa-temperature-full color-theme footer-icon me-2 align-self-center"
+                ></i>
+                <p class="fl-degree d-inline-block m-0 py-2">
+                  <span class="sub-tem-span">17</span> <span>℃</span>
+                </p>
+              </div>
+              <div
+                class="border w-50 text-center d-flex justify-content-center py-2"
+              >
+                <i
+                  class="fa-solid fa-droplet color-theme footer-icon me-2 align-self-center"
+                ></i>
+                <p class="hum-precent d-inline-block m-0 py-2">
+                  <span>41</span><span>%</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
