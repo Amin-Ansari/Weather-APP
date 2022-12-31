@@ -13,8 +13,11 @@ import { humbPercent } from "./elements";
 export const requestApi = function (entry) {
   if (entry.cod != "404") {
     gettingWeather();
-    extractWeatherData(entry);
-    switchMode();
+    setTimeout(function () {
+      gettingWeather();
+      extractWeatherData(entry);
+      switchMode();
+    }, 200);
   } else {
     reHideAllAlerts();
     alerts[1].innerHTML = `${cityInput.value} isn't a valid city name`;
@@ -85,14 +88,15 @@ export const weatherONLocation = function () {
 };
 function onSuccess(entry) {
   gettingWeather();
-  const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
-  fetch(locationApi)
-    .then((Response) => Response.json())
-    .then(function (result) {
-      extractWeatherData(result);
-      switchMode();
-    });
-  reHideAllAlerts();
+  setTimeout(function () {
+    const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
+    fetch(locationApi)
+      .then((Response) => Response.json())
+      .then(function (result) {
+        extractWeatherData(result);
+        switchMode();
+      });
+  }, 500);
 }
 function OnFaild(entry) {
   reHideAllAlerts();
@@ -100,20 +104,21 @@ function OnFaild(entry) {
   alerts[0].classList.remove("d-none");
 }
 
-function reHideAllAlerts() {
+export function reHideAllAlerts() {
   alerts.forEach(function (item) {
     if (!item.classList.contains("d-none")) {
       item.classList.add("d-none");
     }
   });
 }
-function gettingWeather() {
+export function gettingWeather() {
   reHideAllAlerts();
   alerts[2].classList.remove("d-none");
 }
 
 export function switchNormal() {
   cityInput.value = "";
+  reHideAllAlerts();
   if (
     arrowBack.classList.contains("d-inline-block") ||
     weatherContent.classList.contains("d-flex")

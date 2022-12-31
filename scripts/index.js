@@ -8,6 +8,8 @@ import { rsort } from "semver";
 import { weatherONLocation } from "./functions";
 import { Result } from "postcss";
 import { switchNormal } from "./functions";
+import { reHideAllAlerts } from "./functions";
+import { gettingWeather } from "./functions";
 
 cityInput.addEventListener("keyup", function (e) {
   if (e.key == "Enter" && this.value) {

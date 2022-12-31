@@ -11733,6 +11733,8 @@ const humbPercent = document.querySelector(".hum-precent"); //You have to call f
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "gettingWeather": () => (/* binding */ gettingWeather),
+/* harmony export */   "reHideAllAlerts": () => (/* binding */ reHideAllAlerts),
 /* harmony export */   "requestApi": () => (/* binding */ requestApi),
 /* harmony export */   "switchNormal": () => (/* binding */ switchNormal),
 /* harmony export */   "weatherONLocation": () => (/* binding */ weatherONLocation)
@@ -11753,8 +11755,11 @@ __webpack_require__.r(__webpack_exports__);
 const requestApi = function (entry) {
   if (entry.cod != "404") {
     gettingWeather();
-    extractWeatherData(entry);
-    switchMode();
+    setTimeout(function () {
+      gettingWeather();
+      extractWeatherData(entry);
+      switchMode();
+    }, 200);
   } else {
     reHideAllAlerts();
     _elements__WEBPACK_IMPORTED_MODULE_0__.alerts[1].innerHTML = `${_elements__WEBPACK_IMPORTED_MODULE_0__.cityInput.value} isn't a valid city name`;
@@ -11825,14 +11830,15 @@ const weatherONLocation = function () {
 };
 function onSuccess(entry) {
   gettingWeather();
-  const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
-  fetch(locationApi)
-    .then((Response) => Response.json())
-    .then(function (result) {
-      extractWeatherData(result);
-      switchMode();
-    });
-  reHideAllAlerts();
+  setTimeout(function () {
+    const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
+    fetch(locationApi)
+      .then((Response) => Response.json())
+      .then(function (result) {
+        extractWeatherData(result);
+        switchMode();
+      });
+  }, 500);
 }
 function OnFaild(entry) {
   reHideAllAlerts();
@@ -11854,6 +11860,7 @@ function gettingWeather() {
 
 function switchNormal() {
   _elements__WEBPACK_IMPORTED_MODULE_0__.cityInput.value = "";
+  reHideAllAlerts();
   if (
     _elements__WEBPACK_IMPORTED_MODULE_0__.arrowBack.classList.contains("d-inline-block") ||
     _elements__WEBPACK_IMPORTED_MODULE_0__.weatherContent.classList.contains("d-flex")
@@ -12313,6 +12320,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semver__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semver */ "./node_modules/semver/index.js");
 /* harmony import */ var semver__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semver__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var postcss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! postcss */ "./node_modules/postcss/lib/postcss.mjs");
+
+
 
 
 
