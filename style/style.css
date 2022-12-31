@@ -31,12 +31,7 @@ body {
 .card-body,
 .card-footer {
   background: transparent !important;
-}
-.card-header {
-  border-bottom: 0.9px solid #e4e6e4d3 !important;
-}
-.card-body {
-  border-bottom: 0.9px solid #e4e6e4b4 !important;
+  border: none !important;
 }
 h3.color-theme {
   font-weight: 600;
