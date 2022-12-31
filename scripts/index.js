@@ -1,12 +1,13 @@
 import "../style/style.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
-import { alerts, cityInput } from "./elements";
+import { alerts, arrowBack, cityInput } from "./elements";
 import { geoLocationBtn } from "./elements";
 import { requestApi } from "./functions";
 import { rsort } from "semver";
 import { weatherONLocation } from "./functions";
 import { Result } from "postcss";
+import { switchNormal } from "./functions";
 
 cityInput.addEventListener("keyup", function (e) {
   if (e.key == "Enter" && this.value) {
@@ -20,3 +21,5 @@ cityInput.addEventListener("keyup", function (e) {
 });
 
 geoLocationBtn.addEventListener("click", weatherONLocation);
+
+arrowBack.addEventListener("click", switchNormal);

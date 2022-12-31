@@ -11734,6 +11734,7 @@ const humbPercent = document.querySelector(".hum-precent"); //You have to call f
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "requestApi": () => (/* binding */ requestApi),
+/* harmony export */   "switchNormal": () => (/* binding */ switchNormal),
 /* harmony export */   "weatherONLocation": () => (/* binding */ weatherONLocation)
 /* harmony export */ });
 /* harmony import */ var _elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements */ "./scripts/elements.js");
@@ -11770,8 +11771,6 @@ function switchMode() {
   }
 }
 function extractWeatherData(data) {
-  console.log(data);
-
   const dataObject = {
     cityName: data.name,
     country: data.sys.country,
@@ -11785,7 +11784,31 @@ function extractWeatherData(data) {
       temp: data.main.temp,
     },
   };
-  _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg;
+  if (dataObject.weather.weatherId == 800) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg.src = "../images/weather icons/clear.svg";
+  } else if (
+    dataObject.weather.weatherId >= 200 &&
+    dataObject.weather.weatherId <= 232
+  ) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg.src = "../images/weather icons/storm.svg";
+  } else if (
+    dataObject.weather.weatherId >= 600 &&
+    dataObject.weather.weatherId <= 622
+  ) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg.src = "../images/weather icons/snow.svg";
+  } else if (
+    dataObject.weather.weatherId >= 701 &&
+    dataObject.weather.weatherId <= 781
+  ) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg.src = "../images/weather icons/cloud.svg";
+  } else if (
+    (dataObject.weather.weatherId >= 300 &&
+      dataObject.weather.weatherId <= 321) ||
+    (dataObject.weather.weatherId >= 500 && dataObject.weather.weatherId <= 521)
+  ) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherImg.src = "../images/weather icons/rain.svg";
+  }
+
   _elements__WEBPACK_IMPORTED_MODULE_0__.weatherTemp.innerHTML = Math.floor(dataObject.tempture.temp);
   _elements__WEBPACK_IMPORTED_MODULE_0__.weatherKind.innerHTML = dataObject.weather.weatherdesc;
   _elements__WEBPACK_IMPORTED_MODULE_0__.cityName.innerHTML = dataObject.cityName + ", " + dataObject.country;
@@ -11803,7 +11826,6 @@ const weatherONLocation = function () {
 function onSuccess(entry) {
   gettingWeather();
   const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
-  console.log();
   fetch(locationApi)
     .then((Response) => Response.json())
     .then(function (result) {
@@ -11828,6 +11850,18 @@ function reHideAllAlerts() {
 function gettingWeather() {
   reHideAllAlerts();
   _elements__WEBPACK_IMPORTED_MODULE_0__.alerts[2].classList.remove("d-none");
+}
+
+function switchNormal() {
+  _elements__WEBPACK_IMPORTED_MODULE_0__.cityInput.value = "";
+  if (
+    _elements__WEBPACK_IMPORTED_MODULE_0__.arrowBack.classList.contains("d-inline-block") ||
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherContent.classList.contains("d-flex")
+  ) {
+    _elements__WEBPACK_IMPORTED_MODULE_0__.arrowBack.classList.replace("d-inline-block", "d-none");
+    _elements__WEBPACK_IMPORTED_MODULE_0__.weatherContent.classList.replace("d-flex", "d-none");
+    document.forms[0].classList.remove("d-none");
+  }
 }
 
 
@@ -12289,6 +12323,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 _elements__WEBPACK_IMPORTED_MODULE_3__.cityInput.addEventListener("keyup", function (e) {
   if (e.key == "Enter" && this.value) {
     const weatherDetail = fetch(
@@ -12301,6 +12336,8 @@ _elements__WEBPACK_IMPORTED_MODULE_3__.cityInput.addEventListener("keyup", funct
 });
 
 _elements__WEBPACK_IMPORTED_MODULE_3__.geoLocationBtn.addEventListener("click", _functions__WEBPACK_IMPORTED_MODULE_4__.weatherONLocation);
+
+_elements__WEBPACK_IMPORTED_MODULE_3__.arrowBack.addEventListener("click", _functions__WEBPACK_IMPORTED_MODULE_4__.switchNormal);
 
 })();
 

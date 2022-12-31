@@ -31,8 +31,6 @@ function switchMode() {
   }
 }
 function extractWeatherData(data) {
-  console.log(data);
-
   const dataObject = {
     cityName: data.name,
     country: data.sys.country,
@@ -46,7 +44,31 @@ function extractWeatherData(data) {
       temp: data.main.temp,
     },
   };
-  weatherImg;
+  if (dataObject.weather.weatherId == 800) {
+    weatherImg.src = "../images/weather icons/clear.svg";
+  } else if (
+    dataObject.weather.weatherId >= 200 &&
+    dataObject.weather.weatherId <= 232
+  ) {
+    weatherImg.src = "../images/weather icons/storm.svg";
+  } else if (
+    dataObject.weather.weatherId >= 600 &&
+    dataObject.weather.weatherId <= 622
+  ) {
+    weatherImg.src = "../images/weather icons/snow.svg";
+  } else if (
+    dataObject.weather.weatherId >= 701 &&
+    dataObject.weather.weatherId <= 781
+  ) {
+    weatherImg.src = "../images/weather icons/cloud.svg";
+  } else if (
+    (dataObject.weather.weatherId >= 300 &&
+      dataObject.weather.weatherId <= 321) ||
+    (dataObject.weather.weatherId >= 500 && dataObject.weather.weatherId <= 521)
+  ) {
+    weatherImg.src = "../images/weather icons/rain.svg";
+  }
+
   weatherTemp.innerHTML = Math.floor(dataObject.tempture.temp);
   weatherKind.innerHTML = dataObject.weather.weatherdesc;
   cityName.innerHTML = dataObject.cityName + ", " + dataObject.country;
@@ -64,7 +86,6 @@ export const weatherONLocation = function () {
 function onSuccess(entry) {
   gettingWeather();
   const locationApi = `https://api.openweathermap.org/data/2.5/weather?lat=${entry.coords.latitude}&lon=${entry.coords.longitude}&units=metric&appid=64f2263ddfa313c8fea0d579f5ace610`;
-  console.log();
   fetch(locationApi)
     .then((Response) => Response.json())
     .then(function (result) {
@@ -89,4 +110,16 @@ function reHideAllAlerts() {
 function gettingWeather() {
   reHideAllAlerts();
   alerts[2].classList.remove("d-none");
+}
+
+export function switchNormal() {
+  cityInput.value = "";
+  if (
+    arrowBack.classList.contains("d-inline-block") ||
+    weatherContent.classList.contains("d-flex")
+  ) {
+    arrowBack.classList.replace("d-inline-block", "d-none");
+    weatherContent.classList.replace("d-flex", "d-none");
+    document.forms[0].classList.remove("d-none");
+  }
 }
