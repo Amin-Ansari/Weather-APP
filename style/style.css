@@ -62,3 +62,6 @@ p.position-absolute {
   padding: 12px !important;
   background-color: #4cb6f2 !important;
 }
+.back-btn {
+  font-size: 1rem;
+}
