@@ -28,11 +28,37 @@ body {
   font-size: 1.08rem;
 }
 .card-header,
-.card-body,
-.card-footer {
+.card-body {
   background: transparent !important;
   border: none !important;
 }
 h3.color-theme {
   font-weight: 600;
+}
+input {
+  padding: 12px 12px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+input:focus {
+  outline: 2px solid #4cb6f2;
+  box-shadow: none !important;
+}
+
+input::placeholder {
+  color: #b1b2b3 !important;
+}
+p.position-absolute {
+  top: -15px;
+  left: 50%;
+  background-color: #fff;
+  transform: translateX(-50%);
+  color: #b1b2b3 !important;
+  font-weight: 600 !important;
+}
+.location-btn {
+  font-size: 1.3rem !important;
+  padding: 12px !important;
+  background-color: #4cb6f2 !important;
 }
