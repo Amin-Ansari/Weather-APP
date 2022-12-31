@@ -9,3 +9,7 @@ import { weatherKind } from "./elements";
 import { cityName } from "./elements";
 import { subDegree } from "./elements";
 import { humbPercent } from "./elements";
+
+export const requestApi = function (entry) {
+  console.log(entry);
+};
